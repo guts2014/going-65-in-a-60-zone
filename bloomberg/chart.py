@@ -8,31 +8,20 @@ class Organisation():
         self.sector = sector
         self.share_price = price
 
-def contains_sector(organisation, data):
-    for entry in data:
-        if entry["name"] == organisation.sector:
-            return True
-    
-    return False
-
-def add_to_existing_sector(org, data):
+def add_to_json_list(org, data):
     for entry in data:
         if entry["name"] == org.sector:
             entry["children"].append({"name": org.name, "size": org.share_price})
-            break
-            
-def create_and_add_to_sector(org, data):
+            return
+    
     entry = {"name": org.sector, "children":[{"name":org.name, "size":org.share_price}]}
     data.append(entry)
-    
+
 def generate_json(organisations):
     output = {"name": "flare", "children": []}
 
     for org in organisations:
-        if contains_sector(org, output["children"]):
-            add_to_existing_sector(org, output["children"])
-        else:
-            create_and_add_to_sector(org, output["children"])
+        add_to_json_list(org, output["children"])
     
     return output
 

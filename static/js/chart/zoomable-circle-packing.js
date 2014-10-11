@@ -1,4 +1,4 @@
-var margin = 20, diameter = 960;
+var margin = 20, diameter = 600;
 
 var color = d3.scale.linear()
     .domain([-1, 5])
@@ -10,7 +10,7 @@ var pack = d3.layout.pack()
     .size([diameter - margin, diameter - margin])
     .value(function(d) { return d.size; })
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#container").append("svg")
     .attr("width", diameter)
     .attr("height", diameter)
     .append("g")
