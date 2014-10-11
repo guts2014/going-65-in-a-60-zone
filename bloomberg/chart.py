@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from bloomberg import *
+from API import *
 import json
 
 class Organisation():
