@@ -3,8 +3,6 @@
 import blpapi
 
 def get_new_session():
-    options = parseCmdLine()
-    
     session_options = blpapi.SessionOptions()
     session_options.setServerHost("10.8.8.1")
     session_options.setServerPort(8194)
