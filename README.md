@@ -1,7 +1,7 @@
 going-25-in-20-zone
 ===================
 
-You can find some explanations here: d08c7402ed67527c051f744a999d636aef0de677
+You can find some explanations here: https://github.com/guts2014/going-25-in-20-zone/commit/d08c7402ed67527c051f744a999d636aef0de677
 
 Basically there is not much data so we can't actually do anything with weather or diseases. Mostly there is loads of finance data. I even managed to find stock information about some Lithuanian companies. 
 
