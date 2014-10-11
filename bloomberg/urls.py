@@ -8,4 +8,5 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     
     url(r'^status/', 'bloomberg.views.connection_status'),
+    url(r'^main/', 'bloomberg.views.main'),
 )

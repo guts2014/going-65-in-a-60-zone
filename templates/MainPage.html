@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	
+	<body>
+	
+	<script>
+	function goToNewPage(dropdownlist) {
+		var url = stock.value;
+		if (url != ""){
+			window.location = url;
+		}
+	}
+	</script>
+	
+	
+	<div class="ui-grid-a">
+		<div class="ui-block-a">
+			<form name="input">
+				<input type="text" name="stock">
+			</div>
+			<div class="ui-block-b">
+				<input type=button value="Go" onclick="goToNewPage(document.input.stock)">
+			</div>
+		</form>
+	</div>
+	
+	</body>
+	
+</html>
