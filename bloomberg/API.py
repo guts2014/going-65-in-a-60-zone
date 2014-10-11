@@ -108,5 +108,9 @@ def getUSCompaniesList(session):
 def getAllCompaniesList(session):
     return _getData(session, "ReferenceDataRequest", ["UKX Index", "SPX Index"], ["INDX_MEMBERS"])
 
+#returns array of ["date": XXX, "price": XXX, "ticker": XXX] pairs.
+#companies must be array of tickers in which you are interested
+#start/end example: 20010215
+#periodicity can be MONTHLY, YEARLY (Probably there are more, but I don't know)
 def getCompaniesHistory(session, companies, start, end, periodicity):
     return _getData(session, "HistoricalDataRequest", [s + " Index" for s in companies], [PX_LAST], start, end, periodicity)
