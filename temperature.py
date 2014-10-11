@@ -55,7 +55,8 @@ def main():
 				### Replace WER5LOND with other index from images for other data
         request.getElement("securities").appendValue("WER5LOND ACTU Index")
 				### It is uknown what fields the specific data has. So you can use SimpleFieldSearch.py example to find fields. 
-        request.getElement("fields").appendValue("HIGH_TEMP")
+        request.getElement("fields").appendValue
+        ("HIGH_TEMP")
         request.getElement("fields").appendValue("LOW_TEMP")
         request.getElement("fields").appendValue("MEAN_TEMP")
         #request.getElement("fields").appendValue("OPEN")
