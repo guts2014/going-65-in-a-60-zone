@@ -41,8 +41,11 @@ def _getData(session, requestName, securities, givenFields):
         request.append("fields", field)
     session.sendRequest(request)
     
+    counter = 0
     results = {}
     while(True):
+        counter += 1
+        print("Started an iteration" + str(counter))
         # We provide timeout to give the chance to Ctrl+C handling:
         event = session.nextEvent(500)
         for msg in event:
@@ -55,6 +58,7 @@ def _getData(session, requestName, securities, givenFields):
                         for member in indxMembers.values():
                             name = member.getElement("Member Ticker and Exchange Code").getValue()
                             results[name] = _getData(session, requestName, [name + " Index"], [GICS_SECTOR_NAME, TITLE])
+                            print(len(results))
                     else:
                         result = {}
                         for name in givenFields:
@@ -73,23 +77,10 @@ def _getData(session, requestName, securities, givenFields):
 def getUKCompaniesList(session):
     return _getData(session, "ReferenceDataRequest", ["UKX Index"], ["INDX_MEMBERS"])
 
-#Top 500 US companies list of indexes
+#Top 500 US companies list of indices
 def getUSCompaniesList(session):
     return _getData(session, "ReferenceDataRequest", ["SPX Index"], ["INDX_MEMBERS"])
 
 #Get all 600 companies list US and UK
 def getAllCompaniesList(session):
     return _getData(session, "ReferenceDataRequest", ["UKX Index", "SPX Index"], ["INDX_MEMBERS"])
-    
-      
-
-# Do not use
-"""    
-def session_reference_data(session):
-    if not session.openService("//blp/refdata"):
-        print("Unable to connect to Reference Data on Bloomberg")
-        return None
-    
-    data_service = session.getService("//blp/refdata")
-    request = data_service.createRequest("HistoricalDataRequest")
-"""

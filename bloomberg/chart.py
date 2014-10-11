@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from bloomberg import *
 import json
 
 class Organisation():
@@ -8,6 +9,24 @@ class Organisation():
         self.sector = sector
         self.share_price = price
 
+def lukas_form_to_normal_form(data):
+    organisations = []
+    
+    for key in data.keys():
+        org = data[key]
+        try:
+            if org["title"] == "" or org["title"] == " ":
+                break
+                
+            if org["sector"] == "" or org["sector"] == " ":
+                break
+                
+            organisations.append(Organisation(org["title"], org["sector"], 10))
+        except:
+            pass
+    
+    return organisations
+        
 def add_to_json_list(org, data):
     for entry in data:
         if entry["name"] == org.sector:
@@ -17,8 +36,12 @@ def add_to_json_list(org, data):
     entry = {"name": org.sector, "children":[{"name":org.name, "size":org.share_price}]}
     data.append(entry)
 
-def generate_json(organisations):
+def generate_json():
     output = {"name": "flare", "children": []}
+    data = getAllCompaniesList(get_new_session())
+    print(data)
+    organisations = lukas_form_to_normal_form(data)
+    print("Done getting data")
 
     for org in organisations:
         add_to_json_list(org, output["children"])
@@ -29,19 +52,5 @@ def zoom_circles_page(request):
     return render(request, "chart/zoomable-circle-packaging.html", {})
     
 def zoom_circles_data(request):
-    org1 = Organisation("Admiral", "Insurance", "131")
-    org2 = Organisation("Esure", "Insurance", "151")
-    org3 = Organisation("Sheila's Wheels", "Insurance", "101")
-    org4 = Organisation("Direct Line", "Insurance", "171")
-    
-    org5 = Organisation("Microsoft", "Electronics", "201")
-    org6 = Organisation("Apple", "Electronics", "401")
-    org7 = Organisation("Google", "Electronics", "331")
-    org8 = Organisation("Samsung", "Electronics", "350")
-    
-    org9  = Organisation("Asda", "Retail", "101")
-    org10 = Organisation("Tesco", "Retail", "90")
-    org11 = Organisation("Waitrose", "Retail", "89")
-    
-    orgs = [org1, org2, org3, org4, org5, org6, org7, org8, org9, org10, org11]
-    return HttpResponse(json.dumps(generate_json(orgs)))
+    print("Starting to get data")
+    return HttpResponse(json.dumps(generate_json()))
