@@ -52,9 +52,9 @@ def main():
 
         # Create and fill the request for the historical data
         request = refDataService.createRequest("HistoricalDataRequest")
-				### Replace WER5LOND with other index from images for other data
+        #request.asElement().setElement("countryCode", "US");
         request.getElement("securities").appendValue("WER5LOND ACTU Index")
-				### It is uknown what fields the specific data has. So you can use SimpleFieldSearch.py example to find fields. 
+        #request.getElement("securities").appendValue("MSFT US Equity")
         request.getElement("fields").appendValue("HIGH_TEMP")
         request.getElement("fields").appendValue("LOW_TEMP")
         request.getElement("fields").appendValue("MEAN_TEMP")
