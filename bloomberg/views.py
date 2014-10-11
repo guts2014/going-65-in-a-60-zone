@@ -29,5 +29,5 @@ def main(request):
     return render(request, 'MainPage.html', context_dict)
 
 
-def sector_view(request):
-    a=5
+def sector(request, sector_type):
+    return render(request, 'ChartView.html', {"type": sector_type})
