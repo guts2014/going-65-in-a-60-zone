@@ -38,7 +38,7 @@ def add_to_json_list(org, data):
 
 def generate_json():
     output = {"name": "flare", "children": []}
-    data = getAllCompaniesList(get_new_session())
+    data = getUKCompaniesList(get_new_session())
     print(data)
     organisations = lukas_form_to_normal_form(data)
     print("Done getting data")
