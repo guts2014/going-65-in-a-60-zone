@@ -3,7 +3,10 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_PATH = os.getcwd()
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
-STATIC_PATH = os.path.join(PROJECT_PATH,'static')
+
+STATIC_ROOT = os.path.join(PROJECT_PATH,'static')
+STATIC_URL = '/static/'
+
 
 SECRET_KEY = 'c6d8+5xz0x3d0q21u@)@-ijkcf$il=*2ud$-u7vwbb7cnwsb!j'
 DEBUG = True

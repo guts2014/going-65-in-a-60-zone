@@ -27,3 +27,7 @@ def main(request):
     # We make use of the shortcut function to make our lives easier.
     # Note that the first parameter is the template we wish to use.
     return render(request, 'MainPage.html', context_dict)
+
+
+def sector_view(request):
+    a=5
