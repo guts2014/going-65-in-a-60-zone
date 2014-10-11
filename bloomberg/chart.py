@@ -9,6 +9,7 @@ class Organisation():
         self.name = name
         self.sector = sector
         self.share_price = price
+        
 
 def lukas_form_to_normal_form(data):
     organisations = []
