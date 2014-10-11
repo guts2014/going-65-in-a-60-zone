@@ -5,6 +5,8 @@ __pycache__/
 # C extensions
 *.so
 
+# Matthew extensions
+.idea/
 *~
 
 # Distribution / packaging

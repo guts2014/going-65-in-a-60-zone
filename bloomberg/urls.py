@@ -6,6 +6,6 @@ urlpatterns = patterns('',
     url(r'^sector/(?P<sector_type>\w+)/$', 'bloomberg.views.sector'),
     
     url(r'^chart/zoomable-circles', 'bloomberg.views.zoomablecircles'),
-    url(r'^chart/zoomable-circles-json', 'bloomberg.views.json'),
+    url(r'^chart/zoomable-json', 'bloomberg.views.zoomablecirclesjson'),
     # url(r'^main/(?P<stock_num>\w+)/', 'bloomberg.views.main'),
 )
