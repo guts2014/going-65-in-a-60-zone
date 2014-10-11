@@ -5,7 +5,7 @@ urlpatterns = patterns('',
     url(r'^status/', 'bloomberg.views.connection_status'),
     url(r'^sector/(?P<sector_type>\w+)/$', 'bloomberg.views.sector'),
     
-    url(r'^chart/zoomable-circles', 'bloomberg.views.zoomablecircles'),
-    url(r'^chart/zoomable-json', 'bloomberg.views.zoomablecirclesjson'),
+    url(r'^chart/zoomcircles', 'bloomberg.chart.zoom_circles_page'),
+    url(r'^data/zoomcircles', 'bloomberg.chart.zoom_circles_data'),
     # url(r'^main/(?P<stock_num>\w+)/', 'bloomberg.views.main'),
 )

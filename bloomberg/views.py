@@ -3,12 +3,6 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render
 
-def zoomablecircles(request):
-    return render(request, "chart/zoomable-circle-packaging.html", {})
-
-def zoomablecirclesjson(request):
-    return render(request, "flare.json", {})
-
 def connection_status(request):
     if get_new_session() == None:
         return HttpResponse("Unable to connect to Bloomberg database")
