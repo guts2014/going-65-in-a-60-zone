@@ -5,15 +5,7 @@
 	
 	<body>
 	
-	<script>
-	function goToNewPage(dropdownlist) {
-		var url = stock.value;
-		if (url != ""){
-			window.location = url;
-		}
-	}
-	</script>
-	
+	<h3> {{ lol }} </h3>
 	
 	<div class="ui-grid-a">
 		<div class="ui-block-a">
@@ -21,11 +13,20 @@
 				<input type="text" name="stock">
 			</div>
 			<div class="ui-block-b">
-				<input type=button value="Go" onclick="goToNewPage(document.input.stock)">
+				<input type=button value="Go" >
 			</div>
 		</form>
 	</div>
 	
 	</body>
+	
+	<script>
+		function goToNewPage(stock) {
+			var url = stock.value;
+			if (url != ""){
+				window.location = url;
+			}
+		}
+	</script>
 	
 </html>

@@ -5,6 +5,8 @@
 	
 	<body>
 	
+	<h3> {{ lol }} </h3>
+	
 	<div class="ui-grid-a">
 		<div class="ui-block-a">
 			<form name="input">
@@ -18,13 +20,13 @@
 	
 	</body>
 	
-		<script>
-	function goToNewPage(dropdownlist) {
-		var url = stock.value;
-		if (url != ""){
-			window.location = url;
+	<script>
+		function goToNewPage(stock) {
+			var url = stock.value;
+			if (url != ""){
+				window.location = url;
+			}
 		}
-	}
 	</script>
 	
 </html>
