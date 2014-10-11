@@ -9,6 +9,6 @@ urlpatterns = patterns('',
 
                        url(r'^status/', 'bloomberg.views.connection_status'),
                        url(r'^main/', 'bloomberg.views.main'),
-                       url(r'^sector/(?P<sector>)', 'bloomberg.views.sector'),
+                       url(r'^sector/(?P<sector_type>\w+)/$', 'bloomberg.views.sector'),
                        # url(r'^main/(?P<stock_num>\w+)/', 'bloomberg.views.main'),
 )
