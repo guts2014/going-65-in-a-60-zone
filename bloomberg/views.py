@@ -5,7 +5,8 @@ from django.shortcuts import render
 
 
 def connection_status(request):
-    if get_new_session() == None:
+    session = get_new_session()
+    if session == None:
         return HttpResponse("Unable to connect to Bloomberg database")
     return HttpResponse("Successfully connected to Bloomberg database")
 

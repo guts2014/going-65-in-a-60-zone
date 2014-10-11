@@ -53,12 +53,14 @@ def main():
         # Create and fill the request for the historical data
         request = refDataService.createRequest("HistoricalDataRequest")
 				### Replace WER5LOND with other index from images for other data
-        request.getElement("securities").appendValue("WER5LOND ACTU Index")
+        request.getElement("securities").appendValue("EI09IBMSY IBMSY Index")
 				### It is uknown what fields the specific data has. So you can use SimpleFieldSearch.py example to find fields. 
-        request.getElement("fields").appendValue
-        ("HIGH_TEMP")
-        request.getElement("fields").appendValue("LOW_TEMP")
-        request.getElement("fields").appendValue("MEAN_TEMP")
+        request.getElement("fields").appendValue("BID")
+        request.getElement("fields").appendValue("LAST_PRICE")
+        request.getElement("fields").appendValue("LAST_ALL_SESSIONS")
+        request.getElement("fields").appendValue("ASK")
+        request.getElement("fields").appendValue("LOW")
+        request.getElement("fields").appendValue("HIGH")
         #request.getElement("fields").appendValue("OPEN")
         #request.set("periodicityAdjustment", "ACTUAL")
         request.set("periodicitySelection", "YEARLY")
