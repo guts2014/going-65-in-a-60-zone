@@ -25,7 +25,8 @@ def session_market_data(session, requests):
     session.subscribe(subscriptions)
     return session
 
-# Do not use    
+# Do not use
+"""    
 def session_reference_data(session):
     if not session.openService("//blp/refdata"):
         print("Unable to connect to Reference Data on Bloomberg")
@@ -33,3 +34,4 @@ def session_reference_data(session):
     
     data_service = session.getService("//blp/refdata")
     request = data_service.createRequest("HistoricalDataRequest")
+"""
