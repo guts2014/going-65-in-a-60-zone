@@ -1,5 +1,7 @@
 # Abstraction layer over Bloomberg API
 
+import blpapi
+
 def get_new_session():
     options = parseCmdLine()
     
