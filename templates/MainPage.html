@@ -4,18 +4,23 @@
 
 
 {% block body%}
-
-	    <center>
-	        <h1> Going 65 in a 60 zone </h1> 
+    <div class="col-md-10 col-md-offset-1">
+    
+    <div class="well">
+            <center><h1> Going 65 in a 60 zone </h1></center>
+    </div> 
+        <br/><br/><br/>
+            <div class="jumbotron col-md-5">
+	            <h3> {{ dataStuff }} </h3>
 	        
-		    <h3> {{ dataStuff }} </h3>
-		    
-		    <form method="get" id="form1">
-			    <input type="text" name="stock" />
-			    <input type="submit" value="Submit">
-		    </form>
-		</center>
-		
-		<img src="{% static 'images/tom-keene.jpg' %}" />
-
+          	    <form method="get" id="form1">
+		            <input type="text" name="stock" />
+		            <input type="submit" value="Submit">
+	            </form>
+	        </div>
+	        
+	        <div class="col-md-5 col-md-offset-1">
+	            <h2> Worm goes here </h2>
+	        </div>
+        </div>
 {% endblock %}
