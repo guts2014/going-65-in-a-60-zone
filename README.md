@@ -1,5 +1,12 @@
-going-25-in-20-zone
-===================
+Going 65 in a 60 Zone's Bloomberg's Butler The Golden Globes Hackathon Project
+==============================================================================
+## Members
+
+* Adam Buchan-Wyber
+* Donald Martin
+* Lukas Greblikas
+* Matthew Bown
+* Velizar Shulev
 
 You can find some explanations here: https://github.com/guts2014/going-25-in-20-zone/commit/d08c7402ed67527c051f744a999d636aef0de677
 
