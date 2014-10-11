@@ -1,7 +1,5 @@
-<script>
-
 var margin = {top: 100, right: 100, bottom: 100, left: 100},
-width = 960 - margin.left - margin.right,
+width = 600 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom;
 
 var x = d3.scale.linear()
@@ -84,5 +82,3 @@ var u01x = p0[1] - p1[1], u01y = p1[0] - p0[0],
 u01d = Math.sqrt(u01x * u01x + u01y * u01y);
 return [u01x / u01d, u01y / u01d];
 }
-
-</script>
