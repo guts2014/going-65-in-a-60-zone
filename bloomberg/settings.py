@@ -1,4 +1,5 @@
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_PATH = os.getcwd()
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
