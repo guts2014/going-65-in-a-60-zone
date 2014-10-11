@@ -82,5 +82,7 @@ def getUSCompaniesList(session):
     return _getData(session, "ReferenceDataRequest", ["SPX Index"], ["INDX_MEMBERS"])
 
 #Get all 600 companies list US and UK
+# AAL LN is a ticker
+#Returns { "AAL LN": { "title": "Amazon", "sector": "Education" }
 def getAllCompaniesList(session):
     return _getData(session, "ReferenceDataRequest", ["UKX Index", "SPX Index"], ["INDX_MEMBERS"])
