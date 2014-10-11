@@ -1,10 +1,26 @@
-from bloomberg import *
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render
 
+from API import getUKCompaniesList, get_new_session
+from models import Company
+
+
 def connection_status(request):
     session = get_new_session()
+    # results = getUKCompaniesList(session)
+    # for key in results:
+    #     current = results[key]
+    #     title = ""
+    #     sector = ""
+    #     if "title" in current:
+    #         title = current['title']
+    #     if "sector" in current:
+    #         sector = current['sector']
+    #     new_record = Company(title=title, sector=sector, key=key)
+    #     new_record.save()
+    print(Company.objects.all())
+
     if session == None:
         return HttpResponse("Unable to connect to Bloomberg database")
     return HttpResponse("Successfully connected to Bloomberg database")

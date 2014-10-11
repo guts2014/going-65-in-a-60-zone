@@ -4,7 +4,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_PATH = os.getcwd()
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 
-STATIC_PATH = os.path.join(PROJECT_PATH,'static')
+
+STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
 STATIC_URL = '/static/'
 
 
@@ -13,6 +14,18 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
+DATABASE_PATH = os.path.join(PROJECT_PATH, 'DB.db')
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': DATABASE_PATH,
+    }
+}
+
+
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -20,6 +33,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bloomberg'
+
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -52,4 +68,4 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-STATIC_URL = '/static/'
+
