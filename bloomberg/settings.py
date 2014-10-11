@@ -4,7 +4,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_PATH = os.getcwd()
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 
-STATIC_ROOT = os.path.join(PROJECT_PATH,'static')
+STATIC_PATH = os.path.join(PROJECT_PATH,'static')
 STATIC_URL = '/static/'
 
 
@@ -40,7 +40,7 @@ TEMPLATE_DIRS = (
 )
 
 STATICFILES_DIRS = (
-	STATIC_ROOT,
+	STATIC_PATH,
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
