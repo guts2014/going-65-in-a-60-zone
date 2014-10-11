@@ -16,12 +16,12 @@ def main(request):
     context = RequestContext(request)
 
     stock_num = request.GET.get('stock', '')
-
+    
+    #data = get_stock_data(stock_num);
+    
     # Construct a dictionary to pass to the template engine as its context.
     # Note the key boldmessage is the same as {{ boldmessage }} in the template!
-    context_dict = {'lol': stock_num}
-
-    print(stock_num)
+    context_dict = {'dataStuff': stock_num}
 
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
