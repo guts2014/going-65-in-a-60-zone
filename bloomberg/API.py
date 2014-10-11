@@ -41,32 +41,31 @@ def _getData(session, requestName, securities, givenFields):
         request.append("fields", field)
     session.sendRequest(request)
     
-    counter = 0
     results = {}
     while(True):
-        counter += 1
-        print("Started an iteration" + str(counter))
         # We provide timeout to give the chance to Ctrl+C handling:
         event = session.nextEvent(500)
         for msg in event:
             if msg.messageType() == "ReferenceDataResponse":
                 securityData = msg.getElement("securityData")
                 for field in securityData.values():
-                    field = field.getElement("fieldData")
-                    if field.hasElement("INDX_MEMBERS"):
-                        indxMembers = field.getElement("INDX_MEMBERS")
+                    fieldData = field.getElement("fieldData")
+                    if fieldData.hasElement("INDX_MEMBERS"):
+                        indxMembers = fieldData.getElement("INDX_MEMBERS")
+                        names = []
                         for member in indxMembers.values():
                             name = member.getElement("Member Ticker and Exchange Code").getValue()
-                            results[name] = _getData(session, requestName, [name + " Index"], [GICS_SECTOR_NAME, TITLE])
-                            print(len(results))
+                            names += [name + " Index"]
+                        results = _getData(session, requestName, names, [GICS_SECTOR_NAME, TITLE])
                     else:
                         result = {}
                         for name in givenFields:
-                            if field.hasElement(GICS_SECTOR_NAME) and name == GICS_SECTOR_NAME:
-                                result["sector"] = field.getElementAsString(blpapi.Name(name))
-                            elif field.hasElement(TITLE) and name == TITLE:
-                                result["title"] = field.getElementAsString(blpapi.Name(name))
-                        return result
+                            if fieldData.hasElement(GICS_SECTOR_NAME) and name == GICS_SECTOR_NAME:
+                                result["sector"] = fieldData.getElementAsString(blpapi.Name(name))
+                            elif fieldData.hasElement(TITLE) and name == TITLE:
+                                result["title"] = fieldData.getElementAsString(blpapi.Name(name))
+                        ticker = field.getElementAsString("security").replace(" Index", "")
+                        results[ticker] = result
                  
         if event.eventType() == blpapi.Event.RESPONSE:
             break
@@ -77,7 +76,7 @@ def _getData(session, requestName, securities, givenFields):
 def getUKCompaniesList(session):
     return _getData(session, "ReferenceDataRequest", ["UKX Index"], ["INDX_MEMBERS"])
 
-#Top 500 US companies list of indices
+#Top 500 US companies list of indexes
 def getUSCompaniesList(session):
     return _getData(session, "ReferenceDataRequest", ["SPX Index"], ["INDX_MEMBERS"])
 
@@ -86,3 +85,16 @@ def getUSCompaniesList(session):
 #Returns { "AAL LN": { "title": "Amazon", "sector": "Education" }
 def getAllCompaniesList(session):
     return _getData(session, "ReferenceDataRequest", ["UKX Index", "SPX Index"], ["INDX_MEMBERS"])
+    
+      
+
+# Do not use
+"""    
+def session_reference_data(session):
+    if not session.openService("//blp/refdata"):
+        print("Unable to connect to Reference Data on Bloomberg")
+        return None
+    
+    data_service = session.getService("//blp/refdata")
+    request = data_service.createRequest("HistoricalDataRequest")
+"""
