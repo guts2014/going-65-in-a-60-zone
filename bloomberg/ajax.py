@@ -1,11 +1,5 @@
 import json
 
-# Convert DD/MM/YYYY into a number for comparison
-def date_to_number(date):
-    date_parts = date.split("/")
-    number_string = date_parts[2] + date_parts[1] + date_parts[0]
-    return int(number_string)
-
 def get_company_share_price(company, date):
     pass
 
