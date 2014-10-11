@@ -15,3 +15,9 @@ Basically there is not much data so we can't actually do anything with weather o
 Search for indexes: http://www.bloomberg.com/markets/symbolsearch and here: http://bsym.bloomberg.com/sym/
 
 Found this usefull as well: http://www.bloomberglabs.com/content/uploads/sites/2/2014/07/blpapi-developers-guide-2.54.pdf
+
+## More on sonification
+
+http://link.springer.com/chapter/10.1007%2F978-3-642-12439-6_11#page-1
+
+http://www.sonification.com.au/sonipy/index.html

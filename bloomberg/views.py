@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render
 
-
 def connection_status(request):
     session = get_new_session()
     if session == None:

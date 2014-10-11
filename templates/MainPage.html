@@ -1,26 +1,36 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-
-
 {% block body%}
     <div class="col-md-10 col-md-offset-1">
+        <div class="well">
+                <center><h1> Going 65 in a <img src="{% static 'images/logo.png' %}" width=60 /> zone </h1></center>
+        </div> 
+    </div>
     
-    <div class="well">
-            <center><h1> Going 65 in a 60 zone </h1></center>
-    </div> 
-        <br/><br/><br/>
-            <div class="jumbotron col-md-5">
-	            <h3> {{ dataStuff }} </h3>
-	        
+    <br/><br/>
+    
+    <div class="col-md-5 col-md-offset-1">
+        <br /><br /><br /><br /><br /><br />
+        
+        <div class="well">
+            <center>
+                <h1>Search the Data!!</h1>
+                
+                <br/>
+                
+                <p>Enter the revelent stock code below.</p>
+            
           	    <form method="get" id="form1">
-		            <input type="text" name="stock" />
-		            <input type="submit" value="Submit">
-	            </form>
-	        </div>
-	        
-	        <div class="col-md-5 col-md-offset-1">
-	            <h2> Worm goes here </h2>
-	        </div>
+                    <input type="text" name="stock" />
+                    <input type="submit" value="Submit">
+                </form>
+            </center>
         </div>
+        
+        <div class="col-md-5 col-md-offset-1">
+            <script src="{% static 'js/d3.js'%}"> </script>
+            <script src="{% static 'js/rainbow-worm.js'%}"> </script>
+        </div>
+    </div>
 {% endblock %}
