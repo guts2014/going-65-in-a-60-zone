@@ -1,32 +1,23 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">	
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 	</head>
 	
 	<body>
+		<h3> {{ lol }} </h3>
 	
-	<h3> {{ lol }} </h3>
-	
-	<div class="ui-grid-a">
-		<div class="ui-block-a">
-			<form name="input">
-				<input type="text" name="stock">
-			</div>
-			<div class="ui-block-b">
-				<input type=button value="Go" >
-			</div>
-		</form>
-	</div>
-	
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<form name="input">
+					<input type="text" name="stock">
+				</div>
+				<div class="ui-block-b">
+					<input type=button value="Go" >
+				</div>
+			</form>
+		</div>
 	</body>
-	
-	<script>
-		function goToNewPage(stock) {
-			var url = stock.value;
-			if (url != ""){
-				window.location = url;
-			}
-		}
-	</script>
-	
 </html>

@@ -11,8 +11,6 @@ def connection_status(request):
 	
 	
 def main(request):
-	
-	
 	# Request the context of the request.
 	# The context contains information such as the client's machine details, for example.
 	context = RequestContext(request)

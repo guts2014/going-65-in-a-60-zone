@@ -2,6 +2,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_PATH = os.getcwd()
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
+STATIC_PATH = os.path.join(PROJECT_PATH,'static')
 
 SECRET_KEY = 'c6d8+5xz0x3d0q21u@)@-ijkcf$il=*2ud$-u7vwbb7cnwsb!j'
 DEBUG = True
@@ -32,6 +33,13 @@ WSGI_APPLICATION = 'bloomberg.wsgi.application'
 
 TEMPLATE_DIRS = (
     TEMPLATE_PATH,
+)
+
+STATICFILES_DIRS = (
+	STATIC_PATH,
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
 )
 
 LANGUAGE_CODE = 'en-us'
