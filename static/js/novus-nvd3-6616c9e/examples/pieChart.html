@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
+<meta charset="utf-8">
+<link href="../src/nv.d3.css" rel="stylesheet" type="text/css">
 <style>
 
 body {
@@ -19,25 +16,20 @@ text {
   border: 2px;
 }
 </style>
-<link href="{{ STATIC_URL }}js/novus-nvd3-6616c9e/src/nv.d3.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/d3.js"></script>
-
-<body>
-
-
 <body class='with-3d-shadow with-transitions'>
 
 <h2>Test1</h2>
 <svg id="test1" class="mypiechart"></svg>
 
+<h2>Test2</h2>
+<svg id="test2" class="mypiechart"></svg>
 
-
-<script src="{{ STATIC_URL }}js/novus-nvd3-6616c9e/nv.d3.js"></script>
-<script src="{{ STATIC_URL }}js/novus-nvd3-6616c9e/src/models/legend.js"></script>
-<script src="{{ STATIC_URL }}js/novus-nvd3-6616c9e/src/models/pie.js"></script>
-<script src="{{ STATIC_URL }}js/novus-nvd3-6616c9e/src/models/pieChart.js"></script>
-<script src="{{ STATIC_URL }}js/novus-nvd3-6616c9e/src/utils.js"></script>
+<script src="../lib/d3.v3.js"></script>
+<script src="../nv.d3.js"></script>
+<script src="../src/models/legend.js"></script>
+<script src="../src/models/pie.js"></script>
+<script src="../src/models/pieChart.js"></script>
+<script src="../src/utils.js"></script>
 <script>
 
   var testdata = [
