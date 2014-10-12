@@ -34,9 +34,14 @@ def lukas_form_to_normal_form(data):
     return organisations
         
 def add_to_json_list(org, data):
+    data_size = len(data)
+
     for entry in data:
         if entry["name"] == org.sector:
-            entry["children"].append({"name": org.ticker, "size": org.share_price})
+            if data_size > 200:
+                entry["children"].append({"name": org.ticker, "size": org.share_price})
+            else:
+                entry["children"].append({"name": org.name, "size": org.share_price})
             return
     
     entry = {"name": org.sector, "children":[{"name":org.name, "size":org.share_price}]}
@@ -50,7 +55,6 @@ def generate_json(data):
         data[price_data["ticker"]]["price"] = int(price_data["price"])
         
     organisations = lukas_form_to_normal_form(data)
-    print("Done getting data")
 
     for org in organisations:
         add_to_json_list(org, output["children"])
