@@ -2,16 +2,79 @@
 {% load staticfiles %}
 
 {% block body%}
+<div class="col-md-3">
+    <center>
+        <form name='myForm' method="get">
+            <h3> Stocks </h3>
+            <input class="form-control" type="text" name="stock" value="{{ stock }}" />
+            <input class="form-control" type="submit" value="Submit" />
+            
+            <br /><br />
+            <hr>
+        
+            <h3> History Types </h3>
+            {% if his == "a" %}
+                <input type="radio" name="his" value="a"  checked="checked" onclick="document.myForm.submit();" />  HistoryA<br />
+            {% else %}
+                <input type="radio" name="his" value="a" onclick="document.myForm.submit();" />  HistoryA<br />
+            {% endif %}
+            
+            {% if his == "b" %}
+                <input type="radio" name="his" value="b"  checked="checked" onclick="document.myForm.submit();" />  HistoryB<br />
+            {% else %}
+                <input type="radio" name="his" value="b" onclick="document.myForm.submit();" />  HistoryB<br />
+            {% endif %}
+            
+            {% if his == "c" %}
+                <input type="radio" name="his" value="c"  checked="checked" onclick="document.myForm.submit();"/>  HistoryC<br />
+            {% else %}
+                <input type="radio" name="his" value="c" onclick="document.myForm.submit();"/>  HistoryC<br />
+            {% endif %}
+            
+            <br />
+            <hr>
 
-<div class="col-md-9 col-md-offset-1">
+            <h3> Axis </h3>
+            <select class="form-control" name="axis" onchange="document.myForm.submit();" >
+                {% if ax == "a" %}
+                    <option axis="a" value="a" selected>default</option>
+                {% else %}
+                    <option axis="a" value="a" >default</option>
+                {% endif %}
+                
+                {% if ax == "b" %}
+                    <option axis="b" value="b" selected>diffrent</option>
+                {% else %}
+                    <option axis="b" value="b" >diffrent</option>
+                {% endif %}
+                
+                {% if ax == "c" %}
+                    <option axis="c" value="c" selected>another one</option>
+                {% else %}
+                    <option axis="c" value="c" >another one</option>
+                {% endif %}
+                
+                {% if ax == "d" %}
+                    <option axis="d" value="d" selected>something extra</option>
+                {% else %}
+                    <option axis="d" value="d">something extra</option>
+                {% endif %}
+            </select>
+        </form>
+    </center>
+</div>
+
+<div class="col-md-7 ol-md-offset-2">
     <script src="{% static 'js/d3.js'%}"> </script>
             
     <script>
         var margin = {top: 20, right: 20, bottom: 30, left: 50},
-            width = 960 - margin.left - margin.right,
+            width = 700 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
         var parseDate = d3.time.format("%d-%b-%Y").parse;
+        
+        var parseDate2 = d3.time.format("%Y-%m-%d").parse;
 
         var x = d3.time.scale()
             .range([0, width]);
@@ -29,22 +92,28 @@
 
         var line = d3.svg.line()
             .x(function(d) { return x(d.date); })
-            .y(function(d) { return y(d.close); });
+            .y(function(d) { return y(d.price); });
 
         var svg = d3.select("body").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
           .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+           
+           
+           console.log({{ derData }});
             
-          d3.tsv("{% static 'data.tsv'%}" , function(error, data) {
+          var data = {{ derData }};
+          
+          console.log(data);
+          
           data.forEach(function(d) {
-            d.date = parseDate(d.date);
-            d.close = +d.close;
+            d.date = parseDate2(d.date);
+            d.price = +d.price;
           });
 
           x.domain(d3.extent(data, function(d) { return d.date; }));
-          y.domain(d3.extent(data, function(d) { return d.close; }));
+          y.domain(d3.extent(data, function(d) { return d.price; }));
 
           svg.append("g")
               .attr("class", "x axis")
@@ -59,7 +128,7 @@
               .attr("y", 6)
               .attr("dy", ".71em")
               .style("text-anchor", "end")
-              .text("Price ($)")       
+              .text("{{ axisName }}")       
               .style("stroke-width",0.5)
               .style("stroke", "black");                         
 
@@ -71,7 +140,7 @@
               .style("stroke-width",1)
               .style("stroke", "blue");
 
-          d3.tsv("{% static 'War.tsv'%}" , function(boxes) {
+          d3.tsv("{% static file%}" , function(boxes) {
                 boxes.forEach(function(d) {
               var varx = x(parseDate(d.start));
               if (varx < 0) varx = 0;
@@ -92,12 +161,8 @@
                                             
               });
           });
-        });
+        
 
     </script>
-</div>
-
-<div class="col-md-2 col-md-offset-1">
-    
 </div>
 {% endblock %}

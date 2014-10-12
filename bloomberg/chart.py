@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from API import *
 import json
+from django.utils.safestring import SafeString
 
 class Organisation():
     def __init__(self, name, sector, price):
@@ -62,10 +63,48 @@ def history(request):
     # The context contains information such as the client's machine details, for example.
     context = RequestContext(request)
 
+    stock_num = "BP/ LN"
+    his = "a"
+    ax = "a"
     
+    try:
+        stock_num = request.GET.get('stock', '')
+    except:
+        pass
+    
+    
+    
+    
+    try:
+        his = request.GET.get('his', '')
+    except:
+        pass
+            
+    try:
+        ax = request.GET.get('axis', '')
+    except:
+        pass
+        
+    if his == "b":
+        hisFile = "Plages.tsv"
+    elif his == "c":
+        hisFile = "Other.tsv"
+    else:
+        hisFile = "War.tsv"
+        
+    if ax == "b":
+        axisType = "change"
+    elif ax == "c":
+        axisType = "volume"
+    elif ax == "d":
+        axisType = "volitility"
+    else:
+        axisType = "price"
+     
+    d = json.dumps(getCompaniesHistory(get_new_session(), [stock_num], 20000101, 20140215, "MONTHLY"))   
     # Construct a dictionary to pass to the template engine as its context.
     # Note the key boldmessage is the same as {{ boldmessage }} in the template!
-    context_dict = {}
+    context_dict = {"stock": stock_num, "his":his, "ax":ax, "file":hisFile, "axisName":axisType, "derData":SafeString(d)}
 
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
