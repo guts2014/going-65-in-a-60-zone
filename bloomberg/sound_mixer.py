@@ -7,9 +7,9 @@ class SoundMixer:
 
 	dataset_limit = 5
 
-	base_frequencies = [100, 400, 700, 1000, 1300]
-	wave_lengths = [0.16, 0.16, 0.16, 0.16, 0.16]
-	frequency_step = 100
+	base_frequencies = [1000, 400, 700, 1000, 1300]
+	wave_lengths = [0.8, 0.8, 0.8, 0.8, 0.8]
+	frequency_step = 200
 
 	def __init__(self):
 		self.datasets = [] # list of 1-dimensional datasets
@@ -17,16 +17,19 @@ class SoundMixer:
 		
 	# Interface
 		
-	def add_dataset(self, data):
+	def add_dataset(self, data, frequency=None):
+	
 		if(len(self.datasets) < SoundMixer.dataset_limit):
 			self.datasets.append(data)
-			self.frequencies.append(self.generate_frequencies_list(data, SoundMixer.base_frequencies[len(self.datasets) - 1]))
+			if frequency == None:
+				frequency = SoundMixer.base_frequencies[len(self.datasets) - 1]
+			self.frequencies.append(self.generate_frequencies_list(data, frequency))
 		
-	def generate_file(self):
+	def generate_file(self, filename):
 		channel_data = self.generate_channel_data()
 		channels = (channel_data, channel_data)
 		samples = compute_samples(channels, None)
-		write_wavefile('out.wav', samples, None)
+		write_wavefile('static/sounds/' + filename + '.wav', samples, None)
 		
 	# Helper methods
 		
@@ -42,11 +45,14 @@ class SoundMixer:
 		waves = []
 		for frequency in self.frequencies[dataset_index]:
 			waves.append(self.generate_islice_wave(frequency, SoundMixer.wave_lengths[dataset_index]))
+			#pause
+			#waves.append(self.generate_islice_wave(0.0, 0.1))
 			
 		return chain.from_iterable(waves)
 		
 	def generate_islice_wave(self, frequency, length):
 		l = int(44100 * length)	
+		print frequency
 		return islice(damped_wave(frequency=frequency, amplitude=0.1, length=int(l/4)), l)
 		
 	def generate_frequencies_list(self, dataset, base_frequency):
@@ -64,19 +70,3 @@ class SoundMixer:
 			prev = value
 		
 		return frequencies
-
-''''		
-ibm = [184.7700, 182.8800, 177.1200, 187.2600, 177.1400, 186.3900, 184.7700, 182.8800, 177.1200, 187.2600, 177.1400, 186.3900, 184.7700, 182.8800, 177.1200, 187.2600, 177.1400, 186.3900, 184.7700, 182.8800, 177.1200, 187.2600, 177.1400, 186.3900]
-other = [44, 88, 99, 31, 30, 44, 88, 99, 31, 44, 88, 99, 31, 44, 88, 99, 3144, 88, 99, 31, 44, 88, 99, 31, 44, 88, 99, 31, 44, 88, 99, 31, 30, 44, 88, 99, 31, 44, 88, 99, 31, 44, 88, 99, 3144, 88, 99, 31, 44, 88, 99, 31, 44, 88, 99, 31]
-asd = [184.7700, 182.8800, 177.1200, 187.2600, 177.1400, 186.3900, 184.7700, 182.8800, 177.1200, 187.2600, 177.1400, 186.3900, 184.7700, 182.8800, 177.1200, 187.2600, 177.1400, 186.3900, 184.7700, 182.8800, 177.1200, 187.2600, 177.1400, 186.3900]
-sad = [44, 88, 99, 31, 30, 44, 88, 99, 31, 44, 88, 99, 31, 44, 88, 99, 3144, 88, 99, 31, 44, 88, 99, 31, 44, 88, 99, 31, 44, 88, 99, 31, 30, 44, 88, 99, 31, 44, 88, 99, 31, 44, 88, 99, 3144, 88, 99, 31, 44, 88, 99, 31, 44, 88, 99, 31]
-
-
-mixer = SoundMixer()
-mixer.add_dataset(ibm)
-mixer.add_dataset(other)
-mixer.add_dataset(asd)
-mixer.add_dataset(sad)
-
-mixer.generate_file()
-''''

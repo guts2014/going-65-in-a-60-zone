@@ -12,5 +12,7 @@ urlpatterns = patterns('',
     
     url(r'^chart/zoomcircles/us', 'bloomberg.chart.zoom_circles_page', {"country": "us"}),
     url(r'^data/zoomcircles/us', 'bloomberg.chart.zoom_circles_data', {"country": "US"}),
+	
+	url(r'^sounds', 'bloomberg.sound.sounds_page'),
     # url(r'^main/(?P<stock_num>\w+)/', 'bloomberg.views.main'),
 )

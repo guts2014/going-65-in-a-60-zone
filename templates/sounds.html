@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body %}
+
+<button type="button" id="stock1-playbtn" class="btn btn-default btn-lg">Play 1st</button>
+<div id="stock1-wave"></div>
+
+<button type="button" id="stock2-playbtn" class="btn btn-default btn-lg">Play 2nd</button>
+<div id="stock2-wave"></div>
+
+<button type="button" id="playall" class="btn btn-default btn-lg">Play all</button>
+
+<script src="{% static 'js/wavesurfer.min.js' %}"> </script>
+<script>
+	// stock 1
+
+	var stock1 = Object.create(WaveSurfer);
+
+	stock1.init({
+		container: document.querySelector('#stock1-wave'),
+		waveColor: 'violet',
+		progressColor: 'purple'
+	});
+	
+	$("#stock1-playbtn").click(function() {
+		stock1.play();
+	});
+	
+	stock1.load('static/sounds/stock1.wav');
+
+	// stock 2
+	
+	var stock2 = Object.create(WaveSurfer);
+	
+	stock2.init({
+		container: document.querySelector('#stock2-wave'),
+		waveColor: 'violet',
+		progressColor: 'purple'
+	});
+	
+	$("#stock2-playbtn").click(function() {
+		stock2.play();
+	});
+	
+	stock2.load('static/sounds/stock2.wav');
+	
+	// play all
+	$("#playall").click(function() {
+		stock1.play();
+		stock2.play();
+	});
+	
+</script>
+
+{% endblock %}
