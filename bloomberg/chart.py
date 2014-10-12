@@ -32,7 +32,7 @@ def lukas_form_to_normal_form(data):
         except:
             pass
     
-    return organisations
+    return orgs
         
 def add_to_json_list(org, data, data_size):
     for entry in data:
