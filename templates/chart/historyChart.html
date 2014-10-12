@@ -100,12 +100,7 @@
           .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
            
-           
-           console.log({{ derData }});
-            
           var data = {{ derData }};
-          
-          console.log(data);
           
           data.forEach(function(d) {
             d.date = parseDate2(d.date);

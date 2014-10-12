@@ -85,10 +85,7 @@ def history(request):
         stock_num = request.GET.get('stock', '')
     except:
         pass
-    
-    
-    
-    
+
     try:
         his = request.GET.get('his', '')
     except:
