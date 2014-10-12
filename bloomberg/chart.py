@@ -42,11 +42,9 @@ def add_to_json_list(org, data):
     entry = {"name": org.sector, "children":[{"name":org.name, "size":org.share_price}]}
     data.append(entry)
 
-def generate_json():
+def generate_json(data):
     output = {"name": "flare", "children": []}
-    session = get_new_session()
-    data = getUSCompaniesList(session)
-    prices = getCompaniesHistory(session, data.keys(), "20141001", "20141031", "MONTHLY")
+    prices = getCompaniesHistory(get_new_session(), data.keys(), "20141001", "20141031", "MONTHLY")
     
     for price_data in prices:
         data[price_data["ticker"]]["price"] = int(price_data["price"])
@@ -59,12 +57,16 @@ def generate_json():
     
     return output
 
-def zoom_circles_page(request):
-    return render(request, "chart/zoomable-circle-packaging.html", {})
+def zoom_circles_page(request, country):
+    return render(request, "chart/zoomable-circle-packaging.html", {"country": country})
     
-def zoom_circles_data(request):
-    print("Starting to get data")
-    return HttpResponse(json.dumps(generate_json()))
+def zoom_circles_data(request, country):
+    if country == "UK":
+        data = generate_json(getUKCompaniesList(get_new_session()))
+    else:
+        data = generate_json(getUSCompaniesList(get_new_session()))
+        
+    return HttpResponse(json.dumps(data))
     
 def history(request):
     # Request the context of the request.

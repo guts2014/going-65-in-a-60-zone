@@ -16,7 +16,7 @@ var svg = d3.select("#container").append("svg")
     .append("g")
     .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
-d3.json("/data/zoomcircles", function(error, root) {
+d3.json(dataLxn, function(error, root) {
     if (error) return console.error(error);
     var focus = root, nodes = pack.nodes(root), view;
 

@@ -2,6 +2,8 @@
 {% load staticfiles %}
 {% block body %}
 
+<script>var dataLxn = "/data/zoomcircles/{{ country }}"</script>
+
 <center>
 
 <div class="col-md-4">
@@ -13,9 +15,8 @@
     <p>On the right hand side, you can view the top FTSE 100 constituents by
     their industry. The larger the share price, the larger the bubble.<p>
     <p>Click on an industry to expand that bubble.</p>
-    <p><button class="button btn-primary">FTSE 100</button></p>
-    <p><button class="button btn-primary">SMP 500</button></p>
-    <p><button class="button btn-primary">Both</button></p>
+    <p><a href="/chart/zoomcircles/uk"><button class="button btn-primary">FTSE 100</button><a></p>
+    <p><a href="/chart/zoomcircles/uk"><button class="button btn-primary">SMP 500</button></a></p>
   </div>
 </div>
 </div>
