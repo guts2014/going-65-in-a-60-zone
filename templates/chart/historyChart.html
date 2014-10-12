@@ -9,26 +9,26 @@
             <input class="form-control" type="text" name="stock" value="{{ stock }}" />
             <input class="form-control" type="submit" value="Submit" />
             
-            <br /><br />
+            <br />  
             <hr>
         
             <h3> History Types </h3>
             {% if his == "a" %}
-                <input type="radio" name="his" value="a"  checked="checked" onclick="document.myForm.submit();" />  HistoryA<br />
+                <input type="radio" name="his" value="a"  checked="checked" onclick="document.myForm.submit();" />  War<br />
             {% else %}
-                <input type="radio" name="his" value="a" onclick="document.myForm.submit();" />  HistoryA<br />
+                <input type="radio" name="his" value="a" onclick="document.myForm.submit();" />  War<br />
             {% endif %}
             
             {% if his == "b" %}
-                <input type="radio" name="his" value="b"  checked="checked" onclick="document.myForm.submit();" />  HistoryB<br />
+                <input type="radio" name="his" value="b"  checked="checked" onclick="document.myForm.submit();" />  Plague<br />
             {% else %}
-                <input type="radio" name="his" value="b" onclick="document.myForm.submit();" />  HistoryB<br />
+                <input type="radio" name="his" value="b" onclick="document.myForm.submit();" />  Plague<br />
             {% endif %}
             
             {% if his == "c" %}
-                <input type="radio" name="his" value="c"  checked="checked" onclick="document.myForm.submit();"/>  HistoryC<br />
+                <input type="radio" name="his" value="c"  checked="checked" onclick="document.myForm.submit();"/>  Other<br />
             {% else %}
-                <input type="radio" name="his" value="c" onclick="document.myForm.submit();"/>  HistoryC<br />
+                <input type="radio" name="his" value="c" onclick="document.myForm.submit();"/>  Other<br />
             {% endif %}
             
             <br />
