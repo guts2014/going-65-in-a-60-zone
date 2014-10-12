@@ -5,8 +5,9 @@ from API import *
 import json
 
 class Organisation():
-    def __init__(self, name, sector, price):
+    def __init__(self, name, ticker, sector, price):
         self.name = name
+        self.ticker = ticker
         self.sector = sector
         self.share_price = price
         
@@ -23,7 +24,10 @@ def lukas_form_to_normal_form(data):
             if org["sector"] == "" or org["sector"] == " ":
                 break
                 
-            organisations.append(Organisation(org["title"], org["sector"], 10))
+            if org["price"] == "" or org["price"] == 0:
+                break
+                
+            organisations.append(Organisation(org["title"], key, org["sector"], org["price"]))
         except:
             pass
     
@@ -32,7 +36,7 @@ def lukas_form_to_normal_form(data):
 def add_to_json_list(org, data):
     for entry in data:
         if entry["name"] == org.sector:
-            entry["children"].append({"name": org.name, "size": org.share_price})
+            entry["children"].append({"name": org.ticker, "size": org.share_price})
             return
     
     entry = {"name": org.sector, "children":[{"name":org.name, "size":org.share_price}]}
@@ -40,8 +44,13 @@ def add_to_json_list(org, data):
 
 def generate_json():
     output = {"name": "flare", "children": []}
-    data = getUKCompaniesList(get_new_session())
-    print(data)
+    session = get_new_session()
+    data = getUSCompaniesList(session)
+    prices = getCompaniesHistory(session, data.keys(), "20141001", "20141031", "MONTHLY")
+    
+    for price_data in prices:
+        data[price_data["ticker"]]["price"] = int(price_data["price"])
+        
     organisations = lukas_form_to_normal_form(data)
     print("Done getting data")
 

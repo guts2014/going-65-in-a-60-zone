@@ -3,7 +3,24 @@
 {% block body %}
 
 <center>
-<div id="container" class="col-md-6">
+
+<div class="col-md-4">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Zoomable Circles</h3>
+  </div>
+  <div class="panel-body">
+    <p>On the right hand side, you can view the top FTSE 100 constituents by
+    their industry. The larger the share price, the larger the bubble.<p>
+    <p>Click on an industry to expand that bubble.</p>
+    <p><button class="button btn-primary">FTSE 100</button></p>
+    <p><button class="button btn-primary">SMP 500</button></p>
+    <p><button class="button btn-primary">Both</button></p>
+  </div>
+</div>
+</div>
+
+<div id="container" class="col-md-8">
     <link rel="stylesheet" type="text/css" href="{% static 'css/chart/zoomable-circle-packaging.css' %}">
     <script src="{% static 'js/d3.js' %}"></script>
     <script src="{% static 'js/chart/zoomable-circle-packing.js' %}"></script>
