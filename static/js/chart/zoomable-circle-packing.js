@@ -16,7 +16,7 @@ var svg = d3.select("#container").append("svg")
     .append("g")
     .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
-d3.json("/data/zoomcircles", function(error, root) {
+d3.json(dataLxn, function(error, root) {
     if (error) return console.error(error);
     var focus = root, nodes = pack.nodes(root), view;
 
@@ -65,6 +65,10 @@ d3.json("/data/zoomcircles", function(error, root) {
         node.attr("transform", function(d) { return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")"; });
         circle.attr("r", function(d) { return d.r * k; });
     }
+    
+    parent = document.getElementById("container");
+child = document.getElementById("progress");
+parent.removeChild(child);
 });
 
 d3.select(self.frameElement).style("height", diameter + "px");
