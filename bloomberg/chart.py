@@ -33,9 +33,7 @@ def lukas_form_to_normal_form(data):
     
     return organisations
         
-def add_to_json_list(org, data):
-    data_size = len(data)
-
+def add_to_json_list(org, data, data_size):
     for entry in data:
         if entry["name"] == org.sector:
             if data_size > 200:
@@ -56,8 +54,9 @@ def generate_json(data):
         
     organisations = lukas_form_to_normal_form(data)
 
+    data_size = len(data)
     for org in organisations:
-        add_to_json_list(org, output["children"])
+        add_to_json_list(org, output["children"], data_size)
     
     return output
 
