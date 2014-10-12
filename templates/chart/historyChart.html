@@ -30,36 +30,7 @@
             {% else %}
                 <input type="radio" name="his" value="c" onclick="document.myForm.submit();"/>  Other<br />
             {% endif %}
-            
-            <br />
-            <hr>
-
-            <h3> Axis </h3>
-            <select class="form-control" name="axis" onchange="document.myForm.submit();" >
-                {% if ax == "a" %}
-                    <option axis="a" value="a" selected>default</option>
-                {% else %}
-                    <option axis="a" value="a" >default</option>
-                {% endif %}
-                
-                {% if ax == "b" %}
-                    <option axis="b" value="b" selected>diffrent</option>
-                {% else %}
-                    <option axis="b" value="b" >diffrent</option>
-                {% endif %}
-                
-                {% if ax == "c" %}
-                    <option axis="c" value="c" selected>another one</option>
-                {% else %}
-                    <option axis="c" value="c" >another one</option>
-                {% endif %}
-                
-                {% if ax == "d" %}
-                    <option axis="d" value="d" selected>something extra</option>
-                {% else %}
-                    <option axis="d" value="d">something extra</option>
-                {% endif %}
-            </select>
+                        
         </form>
     </center>
 </div>
