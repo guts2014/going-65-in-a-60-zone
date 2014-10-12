@@ -10,24 +10,24 @@ class Organisation():
         self.ticker = ticker
         self.sector = sector
         self.share_price = price
-        
 
+def data_missing(org):
+    for entry in ["title", "sector", "price"]:
+        if org[entry] == "" or org[entry] == " " or org[entry] == 0:
+            return True
+    
+    return False
+    
 def lukas_form_to_normal_form(data):
-    organisations = []
+    orgs = []
     
     for key in data.keys():
         org = data[key]
         try:
-            if org["title"] == "" or org["title"] == " ":
+            if data_missing(org):
                 break
                 
-            if org["sector"] == "" or org["sector"] == " ":
-                break
-                
-            if org["price"] == "" or org["price"] == 0:
-                break
-                
-            organisations.append(Organisation(org["title"], key, org["sector"], org["price"]))
+            orgs.append(Organisation(org["title"], key, org["sector"], org["price"]))
         except:
             pass
     
@@ -72,16 +72,4 @@ def zoom_circles_data(request, country):
     return HttpResponse(json.dumps(data))
     
 def history(request):
-    # Request the context of the request.
-    # The context contains information such as the client's machine details, for example.
-    context = RequestContext(request)
-
-    
-    # Construct a dictionary to pass to the template engine as its context.
-    # Note the key boldmessage is the same as {{ boldmessage }} in the template!
-    context_dict = {}
-
-    # Return a rendered response to send to the client.
-    # We make use of the shortcut function to make our lives easier.
-    # Note that the first parameter is the template we wish to use.
-    return render(request, 'chart/historyChart.html', context_dict)
+    return render(RequestContext(request), 'chart/historyChart.html', {})
